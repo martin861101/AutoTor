@@ -1,34 +1,170 @@
-# AutoTor
+<div align="center">
 
-AutoTor is a LAN-only React and FastAPI interface for the existing qBittorrent container. It accepts a magnet URI or a public webpage containing one, validates the selected CIFS destination, and sends the download to the Movies or Series share. Bulk mode scans a listing page for episode titles within a same-season range such as `S11E01` through `S11E11`, then resolves and adds each matching link.
+# ⚡ AutoTor
 
-## Setup
+### Your downloads. Your storage. One clean interface.
 
-1. Copy `.env.example` to `.env` and enter the **existing** qBittorrent Web UI username and password. Do not change or reset qBittorrent's configuration.
-2. Confirm `/mnt/series` and `/mnt/movies` are writable CIFS mounts. AutoTor blocks downloads when either path is not a live, writable CIFS mount.
-3. Start the stack:
+**A self-hosted, LAN-only download manager built around qBittorrent.**
 
-   ```bash
-   docker compose up -d --build
-   ```
+Paste a magnet link or a public webpage, choose **Movies** or **Series**, and let AutoTor handle the rest.
 
-4. Open `http://<server-lan-address>:9091`.
+[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
+[![React](https://img.shields.io/badge/React-UI-149ECA?logo=react&logoColor=white)](https://react.dev/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![qBittorrent](https://img.shields.io/badge/qBittorrent-Powered-2F67BA)](https://www.qbittorrent.org/)
+[![Network](https://img.shields.io/badge/Access-LAN%20only-343A40)](#security--storage-protection)
 
-qBittorrent remains available to AutoTor over the private Compose network. Its host port defaults to `127.0.0.1:9090`; set `QBITTORRENT_BIND_ADDRESS` to a trusted LAN interface in `.env` only if direct Web UI access is required.
+[Features](#-features) · [Quick start](#-quick-start) · [How it works](#-how-it-works) · [Safety](#-security--storage-protection) · [Testing](#-testing)
 
-Movies and Series default to one capacity group (`plex-media`) so active downloads across both shares are included in free-space checks. Give them different volume IDs only when the shares are backed by different Windows volumes.
+</div>
 
-## Safety behavior
+---
 
-AutoTor validates CIFS mount type and performs a small create/fsync/delete write probe before adding or resuming a torrent. A background monitor repeats that validation, pauses downloads after a storage failure, and requires a successful live check before resume. Magnet metadata with an exact length is checked before submission; downloads whose size becomes known later are paused if their shared volume cannot hold all remaining data.
+## ✨ Features
 
-Webpage fetching allows only public HTTP/HTTPS targets, checks every redirect, rejects local/private/reserved addresses, and applies response size and timeout limits. Pages that require JavaScript or block access return an actionable error.
+| Feature | What it does |
+| :--- | :--- |
+| 🧲 **Magnet & webpage input** | Accept a magnet URI directly or scan a public webpage for a magnet link. |
+| 🎬 **Movies or Series** | Route downloads to the selected media share. |
+| 📺 **Bulk episode mode** | Scan a listing page and add matching episodes within a same-season range, such as `S11E01`–`S11E11`. |
+| 🖥️ **Custom web interface** | Manage the workflow through a React UI backed by FastAPI. |
+| 💾 **Storage-aware downloads** | Check the destination mount and available capacity before downloads proceed. |
+| 🛑 **Automatic protection** | Pause downloads when a storage failure is detected; require a live check before resuming. |
+| 🐳 **Docker deployment** | Run the application alongside the existing qBittorrent service using Docker Compose. |
 
-## Tests
+## 🧭 How it works
 
-Run backend tests inside the built API image and build the frontend with:
+```mermaid
+flowchart TD
+    A[React web UI] --> B[FastAPI backend]
+    B --> C{Input type}
+    C -->|Magnet URI| D[Validate download]
+    C -->|Public webpage| E[Fetch and scan page]
+    E --> D
+    D --> F{Destination}
+    F -->|Movies| G[/mnt/movies]
+    F -->|Series| H[/mnt/series]
+    D --> I[qBittorrent]
+    I --> G
+    I --> H
+    J[Storage monitor] --> G
+    J --> H
+    J -->|Pause on failure| I
+```
+
+AutoTor is a control interface for qBittorrent, not a replacement torrent engine. The backend checks the selected destination and submits downloads to the existing qBittorrent service.
+
+## 🚀 Quick start
+
+### Prerequisites
+
+- Docker and Docker Compose
+- An existing qBittorrent setup with Web UI credentials
+- Writable CIFS mounts at `/mnt/movies` and `/mnt/series`
+- Access to the server on your trusted LAN
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/martin861101/AutoTor.git
+cd AutoTor
+```
+
+### 2. Configure the environment
+
+```bash
+cp .env.example .env
+```
+
+Edit `.env` and enter the **existing** qBittorrent Web UI username and password. Review the remaining settings in `.env.example` for your environment.
+
+> [!IMPORTANT]
+> Do not reset or replace your existing qBittorrent configuration. AutoTor is designed to connect to it.
+
+### 3. Check your storage mounts
+
+```bash
+findmnt -T /mnt/movies
+findmnt -T /mnt/series
+```
+
+Both paths must be live, writable CIFS mounts. AutoTor also performs its own write validation before allowing downloads.
+
+### 4. Launch AutoTor
+
+```bash
+docker compose up -d --build
+```
+
+Open the interface in your browser:
+
+```text
+http://<server-lan-address>:9091
+```
+
+> [!TIP]
+> qBittorrent communicates with AutoTor over the private Compose network. Its host Web UI port defaults to `127.0.0.1:9090`. Only set `QBITTORRENT_BIND_ADDRESS` to a trusted LAN interface if you need direct access to that Web UI.
+
+## 🎯 Download workflow
+
+1. Paste a **magnet URI** or a **public webpage URL**.
+2. Choose **Movies** or **Series**.
+3. For a supported episode listing, use bulk mode and specify a same-season episode range.
+4. AutoTor checks the destination and submits the matching downloads to qBittorrent.
+5. The storage monitor continues checking the destination while downloads run.
+
+Webpages that require JavaScript or block automated access may not be scannable. In that case, use a direct magnet URI.
+
+## 🛡️ Security & storage protection
+
+AutoTor is intended for a **trusted local network**, not direct public internet exposure.
+
+| Protection | Behaviour |
+| :--- | :--- |
+| CIFS verification | Checks that the destination is a live CIFS mount. |
+| Write probe | Performs a small create, sync, and delete test. |
+| Ongoing monitoring | Pauses downloads after a detected storage failure. |
+| Resume validation | Requires a successful live check before resuming. |
+| Capacity checks | Accounts for active downloads sharing the same underlying volume. |
+| Safe webpage fetching | Restricts requests to public HTTP/HTTPS targets, validates redirects, and rejects local, private, or reserved addresses. |
+| Fetch limits | Applies response-size and timeout limits. |
+
+**Shared capacity:** Movies and Series default to a single capacity group, `plex-media`. Keep that grouping when both shares use the same backing Windows volume. Configure distinct volume IDs only when the shares are backed by different volumes.
+
+## 🧪 Testing
+
+Run the backend test suite inside the built API image:
 
 ```bash
 docker compose run --rm autotor-api pytest -q -p no:cacheprovider
+```
+
+Build the frontend image:
+
+```bash
 docker compose build autotor-web
 ```
+
+## 🧰 Technology
+
+| Layer | Technology |
+| :--- | :--- |
+| Frontend | React |
+| Backend | FastAPI |
+| Download engine | qBittorrent |
+| Deployment | Docker Compose |
+| Media storage | CIFS-mounted Movies and Series shares |
+
+## ⚖️ Responsible use
+
+Only download content that you have the right to access and distribute. You are responsible for complying with applicable laws and the terms of any source you use.
+
+---
+
+<div align="center">
+
+**AutoTor** · Self-hosted download management for your own media storage
+
+[Back to top](#-autotor)
+
+</div>
