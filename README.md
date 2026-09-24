@@ -36,20 +36,20 @@ Paste a magnet link or a public webpage, choose **Movies** or **Series**, and le
 
 ```mermaid
 flowchart TD
-    A[React web UI] --> B[FastAPI backend]
-    B --> C{Input type}
-    C -->|Magnet URI| D[Validate download]
-    C -->|Public webpage| E[Fetch and scan page]
+    A["React web UI"] --> B["FastAPI backend"]
+    B --> C{"Input type"}
+    C -->|"Magnet URI"| D["Validate download"]
+    C -->|"Public webpage"| E["Fetch and scan page"]
     E --> D
-    D --> F{Destination}
-    F -->|Movies| G[/mnt/movies]
-    F -->|Series| H[/mnt/series]
-    D --> I[qBittorrent]
+    D --> F{"Destination"}
+    F -->|"Movies"| G["Movies: /mnt/movies"]
+    F -->|"Series"| H["Series: /mnt/series"]
+    D --> I["qBittorrent"]
     I --> G
     I --> H
-    J[Storage monitor] --> G
+    J["Storage monitor"] --> G
     J --> H
-    J -->|Pause on failure| I
+    J -->|"Pause on failure"| I
 ```
 
 AutoTor is a control interface for qBittorrent, not a replacement torrent engine. The backend checks the selected destination and submits downloads to the existing qBittorrent service.
