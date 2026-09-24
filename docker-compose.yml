@@ -1,0 +1,53 @@
+
+services:
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: autotor-qbittorrent
+    restart: unless-stopped
+
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=Africa/Johannesburg
+      - WEBUI_PORT=9090
+      - TORRENTING_PORT=6881
+
+    ports:
+      - "${QBITTORRENT_BIND_ADDRESS:-127.0.0.1}:9090:9090"
+      - "6881:6881"
+      - "6881:6881/udp"
+
+    volumes:
+      - ./qbittorrent/config:/config
+      - /mnt/series:/downloads/series
+      - /mnt/movies:/downloads/movies
+
+  autotor-api:
+    build: ./backend
+    container_name: autotor-api
+    restart: unless-stopped
+    depends_on:
+      - qbittorrent
+    environment:
+      AUTOTOR_QB_URL: http://qbittorrent:9090
+      AUTOTOR_QB_USERNAME: ${QBITTORRENT_USERNAME:-admin}
+      AUTOTOR_QB_PASSWORD: ${QBITTORRENT_PASSWORD:-}
+      AUTOTOR_TRUSTED_NETWORKS: ${AUTOTOR_TRUSTED_NETWORKS:-127.0.0.0/8,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16}
+      AUTOTOR_SERIES_VOLUME_ID: ${AUTOTOR_SERIES_VOLUME_ID:-plex-media}
+      AUTOTOR_MOVIES_VOLUME_ID: ${AUTOTOR_MOVIES_VOLUME_ID:-plex-media}
+    volumes:
+      - /mnt/series:/storage/series
+      - /mnt/movies:/storage/movies
+    security_opt:
+      - no-new-privileges:true
+
+  autotor-web:
+    build: ./frontend
+    container_name: autotor-web
+    restart: unless-stopped
+    depends_on:
+      - autotor-api
+    ports:
+      - "9091:80"
+    security_opt:
+      - no-new-privileges:true

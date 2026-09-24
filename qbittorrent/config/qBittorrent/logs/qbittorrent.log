@@ -1,0 +1,336 @@
+(N) 2026-09-24T02:33:43 - qBittorrent v5.2.3 started. Process ID: 150
+(N) 2026-09-24T02:33:43 - Using config directory: /config/qBittorrent
+(N) 2026-09-24T02:33:43 - Trying to listen on the following list of IP addresses: "0.0.0.0:6881,[::]:6881"
+(I) 2026-09-24T02:33:43 - Peer ID: "-qB5230-"
+(I) 2026-09-24T02:33:43 - HTTP User-Agent: "qBittorrent/5.2.3"
+(I) 2026-09-24T02:33:43 - Distributed Hash Table (DHT) support: ON
+(I) 2026-09-24T02:33:43 - Local Peer Discovery support: ON
+(I) 2026-09-24T02:33:43 - Peer Exchange (PeX) support: ON
+(I) 2026-09-24T02:33:43 - Anonymous mode: OFF
+(I) 2026-09-24T02:33:43 - Encryption support: ON
+(I) 2026-09-24T02:33:43 - Successfully listening on IP. IP: "127.0.0.1". Port: "TCP/6881"
+(I) 2026-09-24T02:33:43 - Successfully listening on IP. IP: "127.0.0.1". Port: "UTP/6881"
+(I) 2026-09-24T02:33:43 - Successfully listening on IP. IP: "172.29.0.2". Port: "TCP/6881"
+(I) 2026-09-24T02:33:43 - Successfully listening on IP. IP: "172.29.0.2". Port: "UTP/6881"
+(I) 2026-09-24T02:33:43 - Successfully listening on IP. IP: "::1". Port: "TCP/6881"
+(I) 2026-09-24T02:33:43 - Successfully listening on IP. IP: "::1". Port: "UTP/6881"
+(W) 2026-09-24T02:33:43 - Couldn't load IP geolocation database. Reason: No such file or directory
+(N) 2026-09-24T02:33:43 - Using built-in WebUI.
+(W) 2026-09-24T02:33:43 - Couldn't load WebUI translation for selected locale (C).
+(N) 2026-09-24T02:33:43 - WebUI: Now listening on IP: *, port: 9090
+(I) 2026-09-24T02:33:43 - Detected external IP. IP: "196.210.80.74"
+(I) 2026-09-24T02:33:44 - IP geolocation database loaded. Type: DBIP-Country-Lite. Build time: Tue Sep 1 03:32:45 2026.
+(I) 2026-09-24T02:33:44 - Successfully updated IP geolocation database.
+(N) 2026-09-24T02:35:13 - WebAPI login success. IP: ::ffff:192.168.1.79
+(N) 2026-09-24T02:36:32 - WebUI translation for selected locale (en) has been successfully loaded.
+(N) 2026-09-24T02:39:01 - Added new torrent. Torrent: "MAFS After The Dinner Party S01E01 1080p STAN WEB-DL AAC2 0 H 264-RAWR[EZTVx.to].mkv"
+(N) 2026-09-24T02:40:26 - Torrent removed. Torrent: "MAFS After The Dinner Party S01E01 1080p STAN WEB-DL AAC2 0 H 264-RAWR[EZTVx.to].mkv"
+(N) 2026-09-24T02:40:26 - Torrent content removed. Torrent: "MAFS After The Dinner Party S01E01 1080p STAN WEB-DL AAC2 0 H 264-RAWR[EZTVx.to].mkv"
+(N) 2026-09-24T02:41:00 - Added new torrent. Torrent: "MAFS After The Dinner Party S01E01 1080p STAN WEB-DL AAC2 0 H 264-RAWR"
+(N) 2026-09-24T02:43:05 - Torrent removed. Torrent: "MAFS After The Dinner Party S01E01 1080p STAN WEB-DL AAC2 0 H 264-RAWR"
+(N) 2026-09-24T02:43:14 - Added new torrent. Torrent: "Gorillaz - The Mountain (Deluxe)  Trip-Hop  Electronic  Hip-Hop  Pop (2026) 320_kbps Beats⭐"
+(N) 2026-09-24T02:44:09 - Torrent download finished. Torrent: "Gorillaz - The Mountain (Deluxe)  Trip-Hop  Electronic  Hip-Hop  Pop (2026) 320_kbps Beats⭐"
+(N) 2026-09-24T02:44:55 - Torrent stopped. Torrent: "Gorillaz - The Mountain (Deluxe)  Trip-Hop  Electronic  Hip-Hop  Pop (2026) 320_kbps Beats⭐"
+(N) 2026-09-24T02:47:28 - Torrent removed. Torrent: "Gorillaz - The Mountain (Deluxe)  Trip-Hop  Electronic  Hip-Hop  Pop (2026) 320_kbps Beats⭐"
+(N) 2026-09-24T02:47:28 - Torrent content removed. Torrent: "Gorillaz - The Mountain (Deluxe)  Trip-Hop  Electronic  Hip-Hop  Pop (2026) 320_kbps Beats⭐"
+(N) 2026-09-24T02:47:40 - Added new torrent. Torrent: "Gorillaz - The Mountain (Deluxe)  Trip-Hop  Electronic  Hip-Hop  Pop (2026) 320_kbps Beats⭐"
+(N) 2026-09-24T02:48:34 - Torrent download finished. Torrent: "Gorillaz - The Mountain (Deluxe)  Trip-Hop  Electronic  Hip-Hop  Pop (2026) 320_kbps Beats⭐"
+(W) 2026-09-24T03:07:44 - WebAPI login failure. Reason: invalid credentials, attempt count: 1, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:07:55 - WebAPI login failure. Reason: invalid credentials, attempt count: 2, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:08:05 - WebAPI login failure. Reason: invalid credentials, attempt count: 3, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:08:15 - WebAPI login failure. Reason: invalid credentials, attempt count: 4, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:08:23 - WebAPI login failure. Reason: invalid credentials, attempt count: 5, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:08:23 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:08:25 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:08:35 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:08:37 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:08:37 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:08:45 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:08:55 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:09:05 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:09:15 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:09:25 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:09:35 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:09:45 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:09:55 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:10:04 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:10:14 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:10:24 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:10:34 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:10:44 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:10:54 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:11:04 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:11:14 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:11:24 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:11:34 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:11:44 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:11:54 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:12:04 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:12:14 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:12:24 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:12:34 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:12:44 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:12:54 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:13:04 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:13:14 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:13:24 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:13:34 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:13:44 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:13:54 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:14:04 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:14:14 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:14:24 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:14:34 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:14:44 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:14:54 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:15:04 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:15:14 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:15:24 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:15:34 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:15:44 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:15:54 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:16:04 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:16:14 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:16:24 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:16:34 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:16:44 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:16:54 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:17:04 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:17:14 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:17:24 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:17:34 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:17:44 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:17:54 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:18:04 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:18:14 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:18:24 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:18:34 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:18:44 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:18:54 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:19:04 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:19:14 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:19:24 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:19:34 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:19:44 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:19:54 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:20:04 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:20:14 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:20:24 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:20:34 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:20:44 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:20:54 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:21:04 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:21:14 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:21:24 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:21:34 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:21:44 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:21:54 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:22:04 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:22:14 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:22:24 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:22:34 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:22:44 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:22:54 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:23:04 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:23:14 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:23:24 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:23:34 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:23:44 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:23:54 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:24:04 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:24:14 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:24:24 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:24:34 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:24:44 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:24:54 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:25:04 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:25:14 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:25:25 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:25:35 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:25:45 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:25:55 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:26:05 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:26:15 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:26:25 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:26:35 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:26:45 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:26:55 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:27:05 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:27:15 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:27:25 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:27:35 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:27:45 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:27:55 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:28:05 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:28:15 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:28:25 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:28:35 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:28:45 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:28:55 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:29:05 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:29:15 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:29:25 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:29:35 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:29:45 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:29:55 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:30:05 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:30:15 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:30:25 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:30:35 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:30:45 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:30:55 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:31:05 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:31:15 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:31:25 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:31:35 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:31:45 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:31:55 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:32:05 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:32:15 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:32:25 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:32:35 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:32:45 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:32:55 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:33:05 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:33:15 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:33:25 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:33:35 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:33:45 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:33:55 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:34:05 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:34:15 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:34:25 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:34:35 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:34:45 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:34:55 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:35:05 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:35:15 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:35:25 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:35:35 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:35:45 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:35:55 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:36:05 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:36:15 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:36:25 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:36:35 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:36:45 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:36:55 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:37:05 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:37:15 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:37:25 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:37:35 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:37:45 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:37:55 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:38:05 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:38:15 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:38:25 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:38:35 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:38:45 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:38:55 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:39:05 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:39:15 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:39:25 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:39:35 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:39:45 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:39:55 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:40:05 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:40:15 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:40:25 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:40:35 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:40:45 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:40:55 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:41:05 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:41:15 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:41:25 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:41:35 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:41:45 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:41:55 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:42:05 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:42:15 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:42:25 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:42:35 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:42:45 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:42:55 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:43:05 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(W) 2026-09-24T03:43:15 - WebAPI login failure. Reason: IP has been banned, IP: ::ffff:172.29.0.3, username: admin
+(N) 2026-09-24T03:43:21 - qBittorrent termination initiated
+(N) 2026-09-24T03:43:21 - Saving resume data completed.
+(N) 2026-09-24T03:43:23 - BitTorrent session successfully finished.
+(N) 2026-09-24T03:43:23 - qBittorrent is now ready to exit
+(N) 2026-09-24T03:43:28 - qBittorrent v5.2.3 started. Process ID: 147
+(N) 2026-09-24T03:43:28 - Using config directory: /config/qBittorrent
+(N) 2026-09-24T03:43:28 - Trying to listen on the following list of IP addresses: "0.0.0.0:6881,[::]:6881"
+(I) 2026-09-24T03:43:28 - Peer ID: "-qB5230-"
+(I) 2026-09-24T03:43:28 - HTTP User-Agent: "qBittorrent/5.2.3"
+(I) 2026-09-24T03:43:28 - Distributed Hash Table (DHT) support: ON
+(I) 2026-09-24T03:43:28 - Local Peer Discovery support: ON
+(I) 2026-09-24T03:43:28 - Peer Exchange (PeX) support: ON
+(I) 2026-09-24T03:43:28 - Anonymous mode: OFF
+(I) 2026-09-24T03:43:28 - Encryption support: ON
+(I) 2026-09-24T03:43:28 - Successfully listening on IP. IP: "127.0.0.1". Port: "TCP/6881"
+(I) 2026-09-24T03:43:28 - Successfully listening on IP. IP: "127.0.0.1". Port: "UTP/6881"
+(I) 2026-09-24T03:43:28 - Successfully listening on IP. IP: "172.29.0.2". Port: "TCP/6881"
+(I) 2026-09-24T03:43:28 - Successfully listening on IP. IP: "172.29.0.2". Port: "UTP/6881"
+(I) 2026-09-24T03:43:28 - Successfully listening on IP. IP: "::1". Port: "TCP/6881"
+(I) 2026-09-24T03:43:28 - Successfully listening on IP. IP: "::1". Port: "UTP/6881"
+(N) 2026-09-24T03:43:28 - Restored torrent. Torrent: "Gorillaz - The Mountain (Deluxe)  Trip-Hop  Electronic  Hip-Hop  Pop (2026) 320_kbps Beats⭐"
+(I) 2026-09-24T03:43:28 - IP geolocation database loaded. Type: DBIP-Country-Lite. Build time: Tue Sep 1 03:32:45 2026.
+(N) 2026-09-24T03:43:28 - Using built-in WebUI.
+(N) 2026-09-24T03:43:28 - WebUI translation for selected locale (en) has been successfully loaded.
+(N) 2026-09-24T03:43:28 - WebUI: Now listening on IP: *, port: 9090
+(I) 2026-09-24T03:43:28 - Detected external IP. IP: "196.210.80.74"
+(N) 2026-09-24T03:43:29 - WebAPI login success. IP: ::ffff:172.29.0.3
+(N) 2026-09-24T03:49:18 - WebAPI login success. IP: ::ffff:172.29.0.3
+(N) 2026-09-24T03:50:16 - WebAPI login success. IP: ::ffff:172.29.0.3
+(N) 2026-09-24T03:55:21 - WebAPI login success. IP: ::ffff:172.29.0.3
+(N) 2026-09-24T03:59:10 - Added new torrent. Torrent: "S4: The Bob Lazar Story (2026) [1080, x265]"
+(N) 2026-09-24T03:59:28 - Torrent removed. Torrent: "S4: The Bob Lazar Story (2026) [1080, x265]"
+(N) 2026-09-24T03:59:33 - Torrent content removed. Torrent: "S4: The Bob Lazar Story (2026) [1080, x265]"
+(N) 2026-09-24T03:59:37 - Added new torrent. Torrent: "S4: The Bob Lazar Story (2026) [1080, x265]"
+(N) 2026-09-24T04:01:01 - WebAPI login success. IP: ::ffff:172.29.0.3
+(N) 2026-09-24T04:01:01 - Detected an attempt to add a duplicate torrent. Source: magnet:?xt=urn:btih:5a0e02479b580a67f7f519fc297dd0523cbb7ef4&dn=S4%3A%20The%20Bob%20Lazar%20Story%20%282026%29%20%5B1080%2C%20x265%5D&xl=3683481097. Existing torrent: "S4: The Bob Lazar Story (2026) [1080, x265]". Torrent infohash: 5a0e02479b580a67f7f519fc297dd0523cbb7ef4. Result: Merging of trackers is disabled
+(N) 2026-09-24T04:01:28 - WebAPI login success. IP: ::ffff:172.29.0.3
+(N) 2026-09-24T04:01:28 - Added new torrent. Torrent: "autotor-response-test"
+(N) 2026-09-24T04:01:28 - Torrent removed. Torrent: "autotor-response-test"
+(N) 2026-09-24T04:02:33 - WebAPI login success. IP: ::ffff:172.29.0.3
+(N) 2026-09-24T04:08:04 - Torrent download finished. Torrent: "S4: The Bob Lazar Story (2026) [1080, x265]"
+(N) 2026-09-24T04:23:40 - Torrent removed. Torrent: "S4: The Bob Lazar Story (2026) [1080, x265]"
+(N) 2026-09-24T04:23:41 - Torrent content removed. Torrent: "S4: The Bob Lazar Story (2026) [1080, x265]"
+(N) 2026-09-24T04:24:25 - Added new torrent. Torrent: "Spider-Man: Brand New Day 2026.1080p.HQ Pre.Multi.AAC 2.0.x264"
+(N) 2026-09-24T04:32:52 - Torrent download finished. Torrent: "Spider-Man: Brand New Day 2026.1080p.HQ Pre.Multi.AAC 2.0.x264"
+(N) 2026-09-24T04:37:18 - Torrent removed. Torrent: "Spider-Man: Brand New Day 2026.1080p.HQ Pre.Multi.AAC 2.0.x264"
+(N) 2026-09-24T04:46:50 - WebAPI login success. IP: ::ffff:172.29.0.3
+(N) 2026-09-24T04:51:37 - Added new torrent. Torrent: "Smiling Friends S03E01 1080p WEB h264-EDITH"
+(N) 2026-09-24T04:51:37 - Added new torrent. Torrent: "Smiling Friends S03E02 1080p WEB h264-EDITH"
+(N) 2026-09-24T04:51:37 - Added new torrent. Torrent: "Smiling Friends S03E02 Le Voyage Incroyable de Monsieur Grenouille 1080p AM"
+(N) 2026-09-24T04:51:37 - Added new torrent. Torrent: "Smiling Friends S03E03 1080p AMZN WEB-DL DDP5 1 H 264 DUAL-BiOMA"
+(N) 2026-09-24T04:51:37 - Added new torrent. Torrent: "Smiling Friends S03E03 1080p HEVC x265-MeGusta"
+(N) 2026-09-24T04:51:37 - Added new torrent. Torrent: "Smiling Friends S03E03 Mole Man 1080p AMZN WEB-DL DD 5 1 H 264-playWEB"
+(N) 2026-09-24T04:51:37 - Added new torrent. Torrent: "Smiling Friends S03E04 1080p AMZN WEB-DL DDP5 1 H 264 DUAL-BiOMA"
+(N) 2026-09-24T04:51:37 - Added new torrent. Torrent: "Bridgerton S03E04 Old Friends 2160p NF WEB-DL DDP5 1 Atmos H 265-XEBEC"
+(N) 2026-09-24T04:51:37 - Added new torrent. Torrent: "Smiling Friends S03E05 1080p AMZN WEB-DL DDP5 1 H 264 DUAL-BiOMA"
+(N) 2026-09-24T04:51:37 - Added new torrent. Torrent: "Smiling Friends S03E05 Pim and Charlie Save Mother Nature 1080p AMZN WEB-DL"
+(N) 2026-09-24T04:51:37 - Added new torrent. Torrent: "Smiling Friends S03E05 1080p WEB h264-EDITH"
+(N) 2026-09-24T04:51:37 - Added new torrent. Torrent: "Smiling Friends S03E05 1080p AMZN WEB-DL DDP5 1 H 264 DUAL-BiOMA"
+(N) 2026-09-24T04:51:37 - Added new torrent. Torrent: "Smiling Friends S03E06 1080p AMZN WEB-DL DDP5 1 H 264 DUAL-BiOMA"
+(N) 2026-09-24T04:51:37 - Added new torrent. Torrent: "Smiling Friends S03E06 Squim Returns 1080p AMZN WEB-DL DD 5 1 H 264-playWEB"
+(N) 2026-09-24T04:51:57 - Torrent removed. Torrent: "Smiling Friends S03E03 Mole Man 1080p AMZN WEB-DL DD 5 1 H 264-playWEB"
+(N) 2026-09-24T04:52:00 - Torrent removed. Torrent: "Smiling Friends S03E06 1080p AMZN WEB-DL DDP5 1 H 264 DUAL-BiOMA"
+(N) 2026-09-24T04:52:07 - Torrent removed. Torrent: "Bridgerton S03E04 Old Friends 2160p NF WEB-DL DDP5 1 Atmos H 265-XEBEC"
+(N) 2026-09-24T04:52:09 - Torrent removed. Torrent: "Smiling Friends S03E05 1080p AMZN WEB-DL DDP5 1 H 264 DUAL-BiOMA"
+(N) 2026-09-24T04:52:11 - Torrent removed. Torrent: "Smiling Friends S03E03 1080p AMZN WEB-DL DDP5 1 H 264 DUAL-BiOMA"
+(N) 2026-09-24T04:52:14 - Torrent removed. Torrent: "Smiling Friends S03E02 1080p WEB h264-EDITH"
+(N) 2026-09-24T04:52:16 - Torrent content removed. Torrent: "Smiling Friends S03E02 1080p WEB h264-EDITH"
+(N) 2026-09-24T04:52:23 - Torrent removed. Torrent: "Smiling Friends S03E02 Le Voyage Incroyable de Monsieur Grenouille 1080p AM"
+(N) 2026-09-24T04:52:23 - Torrent content removed. Torrent: "Smiling Friends S03E02 Le Voyage Incroyable de Monsieur Grenouille 1080p AM"
+(N) 2026-09-24T04:52:26 - Torrent removed. Torrent: "Smiling Friends S03E05 1080p AMZN WEB-DL DDP5 1 H 264 DUAL-BiOMA"
+(N) 2026-09-24T04:52:28 - Torrent removed. Torrent: "Smiling Friends S03E05 Pim and Charlie Save Mother Nature 1080p AMZN WEB-DL"
+(N) 2026-09-24T04:52:30 - Torrent removed. Torrent: "Smiling Friends S03E06 Squim Returns 1080p AMZN WEB-DL DD 5 1 H 264-playWEB"
+(N) 2026-09-24T04:52:32 - Torrent removed. Torrent: "Smiling Friends S03E01 1080p WEB h264-EDITH"
+(N) 2026-09-24T04:52:39 - Torrent removed. Torrent: "Smiling Friends S03E04 1080p AMZN WEB-DL DDP5 1 H 264 DUAL-BiOMA"
+(N) 2026-09-24T04:52:50 - Torrent content removed. Torrent: "Smiling Friends S03E04 1080p AMZN WEB-DL DDP5 1 H 264 DUAL-BiOMA"
+(N) 2026-09-24T04:52:53 - Torrent content removed. Torrent: "Smiling Friends S03E01 1080p WEB h264-EDITH"
+(N) 2026-09-24T04:52:58 - Torrent removed. Torrent: "Smiling Friends S03E05 1080p WEB h264-EDITH"
+(N) 2026-09-24T04:53:04 - Torrent content removed. Torrent: "Smiling Friends S03E05 1080p WEB h264-EDITH"
+(N) 2026-09-24T04:53:11 - Torrent removed. Torrent: "Smiling Friends S03E03 1080p HEVC x265-MeGusta"
+(N) 2026-09-24T04:53:17 - Torrent content removed. Torrent: "Smiling Friends S03E03 1080p HEVC x265-MeGusta"
