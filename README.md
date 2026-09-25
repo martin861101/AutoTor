@@ -26,9 +26,10 @@ Paste a magnet link or a public webpage, choose **Movies** or **Series**, and le
 | :--- | :--- |
 | 🧲 **Magnet & webpage input** | Accept a magnet URI directly or scan a public webpage for a magnet link. |
 | 🎬 **Movies or Series** | Route downloads to the selected media share. |
-| 📺 **Bulk episode mode** | Scan a listing page and add matching episodes within a same-season range, such as `S11E01`–`S11E11`. |
+| 📦 **Bulk downloads** | Filter a listing by an optional episode range, Must Include name, resolution, and extra keyword; add up to 100 matches while skipping duplicates. |
 | 🖥️ **Custom web interface** | Manage the workflow through a React UI backed by FastAPI. |
 | 💾 **Storage-aware downloads** | Check the destination mount and available capacity before downloads proceed. |
+| 📺 **Episode organization** | Move completed single-episode Series torrents into show and season folders while keeping qBittorrent's seeding paths current. |
 | 🛑 **Automatic protection** | Pause downloads when a storage failure is detected; require a live check before resuming. |
 | 🐳 **Docker deployment** | Run the application alongside the existing qBittorrent service using Docker Compose. |
 
@@ -109,11 +110,20 @@ http://<server-lan-address>:9091
 
 1. Paste a **magnet URI** or a **public webpage URL**.
 2. Choose **Movies** or **Series**.
-3. For a supported episode listing, use bulk mode and specify a same-season episode range.
-4. AutoTor checks the destination and submits the matching downloads to qBittorrent.
+3. For a listing page, use bulk mode. Optionally enable a same-season episode range and Must Include name, then select resolutions or enter another keyword. Multiple filters apply together; selected resolutions match any of the selected values.
+4. AutoTor checks the destination and submits up to 100 matching torrents to qBittorrent. With a range, it selects one release per episode and skips episodes already in the queue, as well as duplicate info hashes or names.
 5. The storage monitor continues checking the destination while downloads run.
+6. After a single-episode Series torrent completes, the organizer moves it into its show and season folder through qBittorrent.
 
 Webpages that require JavaScript or block automated access may not be scannable. In that case, use a direct magnet URI.
+
+### Episode organizer
+
+The `autotor-organizer` service checks qBittorrent every 60 seconds. When a completed, single-file Series torrent is still at the root of `/mnt/series`, it reads the `S01E07` pattern in the video filename and requests a move through qBittorrent. For example, `Lanterns.2026.S01E07.mkv` moves to `/mnt/series/Lanterns (2026)/Season 01/`. qBittorrent keeps the new path for seeding.
+
+The organizer skips incomplete torrents, files already in subfolders, multi-file packs, non-video files, and names without an episode pattern. It also skips a move if the Series CIFS mount is unavailable or the destination file already exists. Multi-file season packs need manual organization.
+
+To check its activity, run `docker compose logs -f autotor-organizer`. In qBittorrent, enable **Append .!qB extension to incomplete files** so Jellyfin does not scan partial videos at the Series root.
 
 ## 🛡️ Security & storage protection
 

@@ -141,8 +141,13 @@ function DeleteDialog({ torrent, onClose, onConfirm, busy }) {
 export default function App() {
   const [source, setSource] = useState('')
   const [mode, setMode] = useState('single')
+  const [rangeEnabled, setRangeEnabled] = useState(false)
   const [startEpisode, setStartEpisode] = useState('')
   const [endEpisode, setEndEpisode] = useState('')
+  const [includeEnabled, setIncludeEnabled] = useState(false)
+  const [mustInclude, setMustInclude] = useState('')
+  const [resolutions, setResolutions] = useState([])
+  const [otherFilter, setOtherFilter] = useState('')
   const [destination, setDestination] = useState('series')
   const [health, setHealth] = useState(null)
   const [storage, setStorage] = useState([])
@@ -177,22 +182,26 @@ export default function App() {
   const submit = async (event) => {
     event.preventDefault()
     if (!source.trim()) return showNotice(`Paste a ${mode === 'bulk' ? 'listing page URL' : 'webpage URL or magnet URI'}.`)
-    if (mode === 'bulk' && (!startEpisode.trim() || !endEpisode.trim())) {
-      return showNotice('Enter both the start and end episode codes.')
-    }
+    if (mode === 'bulk' && rangeEnabled && (!startEpisode.trim() || !endEpisode.trim())) return showNotice('Enter both episode codes for the range.')
+    if (mode === 'bulk' && includeEnabled && !mustInclude.trim()) return showNotice('Enter a name for Must Include.')
     setBusy(true)
     try {
       if (mode === 'bulk') {
         const result = await api('/api/downloads/bulk', {
           method: 'POST',
-          body: JSON.stringify({ source, destination, start: startEpisode, end: endEpisode }),
+          body: JSON.stringify({
+            source, destination,
+            start: rangeEnabled ? startEpisode : null,
+            end: rangeEnabled ? endEpisode : null,
+            must_include: includeEnabled ? mustInclude : '',
+            resolutions,
+            other_filter: otherFilter,
+          }),
         })
         const summary = `${result.added.length} added, ${result.skipped.length} skipped, ${result.failed.length} failed.`
-        showNotice(`Bulk scan complete: ${summary}`, result.added.length ? 'success' : 'error')
+        showNotice(`Bulk scan complete: ${summary}`, result.added.length || result.skipped.length ? 'success' : 'error')
         if (!result.failed.length) {
           setSource('')
-          setStartEpisode('')
-          setEndEpisode('')
         }
       } else {
         await api('/api/downloads', { method: 'POST', body: JSON.stringify({ source, destination }) })
@@ -242,8 +251,8 @@ export default function App() {
   }), [torrents])
   const visible = filter === 'all' ? torrents : torrents.filter((item) => filter === 'downloading' ? ['downloading', 'pending'].includes(item.status) : item.status === filter)
   const selectedStorage = storage.find((item) => item.destination === destination)
-  const bulkReady = mode === 'single' || (startEpisode.trim() && endEpisode.trim())
-  const canSubmit = source.trim() && bulkReady && selectedStorage?.mounted && selectedStorage?.writable && !busy
+  const filtersReady = mode !== 'bulk' || ((!rangeEnabled || (startEpisode.trim() && endEpisode.trim())) && (!includeEnabled || mustInclude.trim()))
+  const canSubmit = source.trim() && filtersReady && selectedStorage?.mounted && selectedStorage?.writable && !busy
 
   return (
     <>
@@ -261,7 +270,7 @@ export default function App() {
 
         <form className="panel add-panel" onSubmit={submit}>
           <div className="add-heading-row">
-            <div className="section-heading"><div className="icon-tile accent"><Icon name="link" /></div><div><h2>{mode === 'bulk' ? 'Add an episode range' : 'Paste a URL or magnet link'}</h2><p>{mode === 'bulk' ? 'Scan a listing page and add matching episode links.' : 'Use a torrent webpage URL or a direct magnet URI.'}</p></div></div>
+            <div className="section-heading"><div className="icon-tile accent"><Icon name="link" /></div><div><h2>{mode === 'bulk' ? 'Add downloads from a page' : 'Paste a URL or magnet link'}</h2><p>{mode === 'bulk' ? 'Scan a listing page and add its torrent links, skipping duplicates.' : 'Use a torrent webpage URL or a direct magnet URI.'}</p></div></div>
             <div className="mode-toggle" role="group" aria-label="Download mode">
               <button type="button" className={mode === 'single' ? 'active' : ''} aria-pressed={mode === 'single'} onClick={() => setMode('single')}>Single</button>
               <button type="button" className={mode === 'bulk' ? 'active' : ''} aria-pressed={mode === 'bulk'} onClick={() => setMode('bulk')}>Bulk</button>
@@ -274,12 +283,27 @@ export default function App() {
           </div>
           {mode === 'bulk' && (
             <fieldset className="bulk-options">
-              <legend>Episode range</legend>
-              <div className="bulk-range">
-                <label htmlFor="start-episode"><span>Start</span><input id="start-episode" value={startEpisode} onChange={(event) => setStartEpisode(event.target.value)} placeholder="S11E01" autoComplete="off" required /></label>
-                <label htmlFor="end-episode"><span>End</span><input id="end-episode" value={endEpisode} onChange={(event) => setEndEpisode(event.target.value)} placeholder="S11E11" autoComplete="off" required /></label>
-                <p>Titles are matched case-insensitively. The range must stay within one season.</p>
+              <legend>Bulk filters</legend>
+              <p className="bulk-hint">Selected filters apply together. With a range, only one torrent is added per matching episode.</p>
+              <div className="bulk-filter-row">
+                <label className="bulk-switch"><input type="checkbox" checked={rangeEnabled} onChange={(event) => setRangeEnabled(event.target.checked)} /><span>Range</span></label>
+                {rangeEnabled && <div className="bulk-range">
+                  <label htmlFor="start-episode">From<input id="start-episode" value={startEpisode} onChange={(event) => setStartEpisode(event.target.value)} placeholder="S01E01" autoComplete="off" required /></label>
+                  <label htmlFor="end-episode">To<input id="end-episode" value={endEpisode} onChange={(event) => setEndEpisode(event.target.value)} placeholder="S01E05" autoComplete="off" required /></label>
+                </div>}
               </div>
+              <div className="bulk-filter-row">
+                <label className="bulk-switch"><input type="checkbox" checked={includeEnabled} onChange={(event) => setIncludeEnabled(event.target.checked)} /><span>Must Include</span></label>
+                {includeEnabled && <label className="bulk-text-label" htmlFor="must-include">Name or phrase<input id="must-include" value={mustInclude} onChange={(event) => setMustInclude(event.target.value)} placeholder="Lantern" autoComplete="off" required /></label>}
+              </div>
+              <div className="bulk-filter-row">
+                <span className="bulk-filter-heading">Resolution</span>
+                <div className="quality-options" role="group" aria-label="Resolution filters">
+                  {['480p', '720p', '1080p', '2160p'].map((value) => <label key={value}><input type="checkbox" checked={resolutions.includes(value)} onChange={(event) => setResolutions((current) => event.target.checked ? [...current, value] : current.filter((item) => item !== value))} />{value === '2160p' ? '2160p / 4K' : value}</label>)}
+                </div>
+                <small>Choose one or more. Leave all clear for any resolution.</small>
+              </div>
+              <label className="bulk-text-label" htmlFor="other-filter">Other keyword (optional)<input id="other-filter" value={otherFilter} onChange={(event) => setOtherFilter(event.target.value)} placeholder="e.g. WEB-DL" autoComplete="off" /></label>
             </fieldset>
           )}
           <fieldset>

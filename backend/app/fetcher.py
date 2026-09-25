@@ -5,7 +5,7 @@ import re
 import socket
 from dataclasses import dataclass
 from html.parser import HTMLParser
-from urllib.parse import parse_qs, urlencode, urljoin, urlparse
+from urllib.parse import parse_qs, unquote, urlencode, urljoin, urlparse
 
 import httpx
 
@@ -16,16 +16,18 @@ class FetchError(ValueError):
     pass
 
 
-EPISODE_PATTERN = re.compile(r"(?<![A-Z0-9])S(\d{1,3})[ ._-]*E(\d{1,3})(?!\d)", re.IGNORECASE)
 MAX_BULK_LINKS = 100
+EPISODE_PATTERN = re.compile(r"(?<![A-Z0-9])S(\d{1,3})[ ._-]*E(\d{1,3})(?!\d)", re.IGNORECASE)
+RESOLUTION_TERMS = {
+    "480p": ("480p",), "720p": ("720p",), "1080p": ("1080p",), "2160p": ("2160p", "4k"),
+}
 
 
 @dataclass(frozen=True)
-class EpisodeLink:
+class BulkLink:
     title: str
     url: str
-    season: int
-    episode: int
+    episode_key: tuple[str, int, int] | None = None
 
 
 class _PageLinkParser(HTMLParser):
@@ -58,47 +60,83 @@ class _PageLinkParser(HTMLParser):
         self._text = []
 
 
-def parse_episode_code(value: str) -> tuple[int, int]:
-    match = EPISODE_PATTERN.fullmatch(value.strip())
-    if not match:
-        raise FetchError("Use an episode code such as S11E01.")
-    return int(match.group(1)), int(match.group(2))
-
-
-def _episode_range(start: str, end: str) -> tuple[int, int, int]:
-    start_season, start_episode = parse_episode_code(start)
-    end_season, end_episode = parse_episode_code(end)
-    if start_season != end_season:
-        raise FetchError("Bulk ranges must start and end in the same season.")
-    if start_episode > end_episode:
-        raise FetchError("The start episode must not come after the end episode.")
-    if end_episode - start_episode + 1 > MAX_BULK_LINKS:
-        raise FetchError(f"A bulk range can contain at most {MAX_BULK_LINKS} episodes.")
-    return start_season, start_episode, end_episode
-
-
-def _matching_episode(title: str, season: int, first: int, last: int) -> int | None:
-    for match in EPISODE_PATTERN.finditer(title):
-        if int(match.group(1)) == season and first <= int(match.group(2)) <= last:
-            return int(match.group(2))
-    return None
-
-
-def extract_episode_links(document: str, base_url: str, start: str, end: str) -> list[EpisodeLink]:
-    season, first, last = _episode_range(start, end)
+def extract_bulk_links(document: str, base_url: str) -> list[BulkLink]:
     parser = _PageLinkParser()
     parser.feed(document)
-    matches: list[EpisodeLink] = []
+    matches: list[BulkLink] = []
     seen: set[str] = set()
     for href, title in parser.links:
-        episode = _matching_episode(title, season, first, last)
+        if not href.strip():
+            continue
         url = urljoin(base_url, href.strip())
-        if episode is None or url in seen or urlparse(url).scheme not in {"http", "https", "magnet"}:
+        if url in seen or urlparse(url).scheme not in {"http", "https", "magnet"}:
             continue
         seen.add(url)
-        matches.append(EpisodeLink(title, url, season, episode))
-    matches.sort(key=lambda item: item.episode)
-    return matches[:MAX_BULK_LINKS]
+        matches.append(BulkLink(title or url, url))
+    return matches
+
+
+def episode_identity(title: str, must_include: str = "") -> tuple[str, int, int] | None:
+    match = EPISODE_PATTERN.search(title)
+    if not match:
+        return None
+    show = must_include.strip().casefold() or re.sub(r"[^a-z0-9]+", " ", title[:match.start()].casefold()).strip()
+    return show, int(match.group(1)), int(match.group(2))
+
+
+def select_bulk_links(
+    links: list[BulkLink], start: str | None = None, end: str | None = None,
+    must_include: str = "", resolutions: tuple[str, ...] = (), other_filter: str = "",
+) -> list[BulkLink]:
+    first = last = None
+    season = None
+    if start is not None or end is not None:
+        start_match = EPISODE_PATTERN.fullmatch((start or "").strip())
+        end_match = EPISODE_PATTERN.fullmatch((end or "").strip())
+        if not start_match or not end_match:
+            raise FetchError("Enter both episode codes, such as S01E01 and S01E05.")
+        season, first = int(start_match.group(1)), int(start_match.group(2))
+        end_season, last = int(end_match.group(1)), int(end_match.group(2))
+        if season != end_season or first > last:
+            raise FetchError("The episode range must be ordered within one season.")
+        if last - first + 1 > MAX_BULK_LINKS:
+            raise FetchError(f"An episode range can contain at most {MAX_BULK_LINKS} episodes.")
+    if any(resolution not in RESOLUTION_TERMS for resolution in resolutions):
+        raise FetchError("Choose a supported resolution filter.")
+
+    selected: list[BulkLink] = []
+    seen_urls: set[str] = set()
+    seen_episodes: set[tuple[str, int, int]] = set()
+    include = must_include.strip().casefold()
+    extra = other_filter.strip().casefold()
+    for link in links:
+        parsed_url = urlparse(link.url)
+        magnet_name = parse_qs(parsed_url.query).get("dn", [""])[0] if parsed_url.scheme == "magnet" else ""
+        searchable = f"{link.title} {magnet_name} {unquote(parsed_url.path)}".casefold()
+        if include and include not in searchable:
+            continue
+        if extra and extra not in searchable:
+            continue
+        if resolutions and not any(
+            re.search(rf"(?<![a-z0-9]){term}(?![a-z0-9])", searchable)
+            for value in resolutions for term in RESOLUTION_TERMS[value]
+        ):
+            continue
+        identity = episode_identity(link.title or magnet_name, include) if season is not None else None
+        if season is not None:
+            if identity is None:
+                identity = episode_identity(searchable, include)
+            if identity is None or identity[1] != season or not first <= identity[2] <= last:
+                continue
+        if link.url in seen_urls or (identity is not None and identity in seen_episodes):
+            continue
+        seen_urls.add(link.url)
+        if identity is not None:
+            seen_episodes.add(identity)
+        selected.append(BulkLink(link.title, link.url, identity))
+        if len(selected) == MAX_BULK_LINKS:
+            break
+    return selected
 
 
 def _thepiratebay_api_url(url: str) -> str | None:
@@ -141,26 +179,23 @@ def _thepiratebay_magnet(metadata: object) -> str:
         raise FetchError("The Pirate Bay returned invalid torrent metadata.") from exc
 
 
-def _thepiratebay_episode_links(metadata: object, start: str, end: str) -> list[EpisodeLink]:
-    season, first, last = _episode_range(start, end)
+def _thepiratebay_bulk_links(metadata: object) -> list[BulkLink]:
     if not isinstance(metadata, list):
         raise FetchError("The Pirate Bay returned invalid search results.")
-    matches: list[EpisodeLink] = []
+    matches: list[BulkLink] = []
     seen: set[str] = set()
     for item in metadata:
         if not isinstance(item, dict):
             continue
         title = str(item.get("name", "")).strip()
         torrent_id = str(item.get("id", ""))
-        episode = _matching_episode(title, season, first, last)
-        if episode is None or not torrent_id.isdigit() or torrent_id in seen:
+        if not torrent_id.isdigit() or torrent_id in seen:
             continue
         seen.add(torrent_id)
         matches.append(
-            EpisodeLink(title, f"https://thepiratebay.org/description.php?id={torrent_id}", season, episode)
+            BulkLink(title, f"https://thepiratebay.org/description.php?id={torrent_id}")
         )
-    matches.sort(key=lambda item: item.episode)
-    return matches[:MAX_BULK_LINKS]
+    return matches
 
 
 def _validate_url_shape(url: str) -> None:
@@ -203,8 +238,10 @@ async def _read_limited(response: httpx.Response, max_bytes: int) -> bytes:
     return bytes(body)
 
 
-async def scan_episode_links(url: str, start: str, end: str, timeout: float, max_bytes: int) -> list[EpisodeLink]:
-    _episode_range(start, end)
+async def scan_bulk_links(
+    url: str, timeout: float, max_bytes: int, *, start: str | None = None, end: str | None = None,
+    must_include: str = "", resolutions: tuple[str, ...] = (), other_filter: str = "",
+) -> list[BulkLink]:
     current = url.strip()
     headers = {"User-Agent": "AutoTor/1.0 (+LAN torrent manager)", "Accept": "text/html,application/xhtml+xml"}
     async with httpx.AsyncClient(timeout=timeout, follow_redirects=False, headers=headers) as client:
@@ -218,7 +255,9 @@ async def scan_episode_links(url: str, start: str, end: str, timeout: float, max
                         response.raise_for_status()
                         body = await _read_limited(response, max_bytes)
                     try:
-                        return _thepiratebay_episode_links(json.loads(body), start, end)
+                        return select_bulk_links(
+                            _thepiratebay_bulk_links(json.loads(body)), start, end, must_include, resolutions, other_filter
+                        )
                     except (json.JSONDecodeError, UnicodeDecodeError) as exc:
                         raise FetchError("The Pirate Bay returned invalid search results.") from exc
 
@@ -234,7 +273,10 @@ async def scan_episode_links(url: str, start: str, end: str, timeout: float, max
                         raise FetchError("The URL did not return an HTML webpage.")
                     body = await _read_limited(response, max_bytes)
                     encoding = response.encoding or "utf-8"
-                    return extract_episode_links(body.decode(encoding, errors="replace"), current, start, end)
+                    return select_bulk_links(
+                        extract_bulk_links(body.decode(encoding, errors="replace"), current),
+                        start, end, must_include, resolutions, other_filter,
+                    )
             except httpx.TimeoutException as exc:
                 raise FetchError("The webpage request timed out.") from exc
             except httpx.HTTPStatusError as exc:

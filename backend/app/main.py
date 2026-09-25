@@ -3,13 +3,15 @@ import contextlib
 import ipaddress
 from collections import defaultdict
 from contextlib import asynccontextmanager
+from typing import Literal
+from urllib.parse import parse_qs, urlparse
 
 from fastapi import Depends, FastAPI, HTTPException, Request
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 
 from .config import Settings, get_settings
-from .fetcher import EpisodeLink, FetchError, fetch_magnet, scan_episode_links
+from .fetcher import BulkLink, FetchError, episode_identity, fetch_magnet, scan_bulk_links
 from .magnet import MagnetError, magnet_info_hash, magnet_size, validate_magnet
 from .qbittorrent import QBittorrentClient, QBittorrentError
 from .storage import Destination, StorageError, ensure_storage, validate_storage
@@ -35,8 +37,11 @@ class DownloadRequest(BaseModel):
 class BulkDownloadRequest(BaseModel):
     source: str = Field(min_length=1, max_length=16_384)
     destination: str
-    start: str = Field(min_length=1, max_length=16)
-    end: str = Field(min_length=1, max_length=16)
+    start: str | None = Field(default=None, max_length=16)
+    end: str | None = Field(default=None, max_length=16)
+    must_include: str = Field(default="", max_length=100)
+    resolutions: list[Literal["480p", "720p", "1080p", "2160p"]] = Field(default_factory=list, max_length=4)
+    other_filter: str = Field(default="", max_length=100)
 
 
 class ActionRequest(BaseModel):
@@ -263,21 +268,24 @@ async def add_bulk_downloads(
 
     settings = request.app.state.settings
     try:
-        links = await scan_episode_links(
+        links = await scan_bulk_links(
             payload.source,
-            payload.start,
-            payload.end,
             settings.fetch_timeout_seconds,
             settings.fetch_max_bytes,
+            start=payload.start,
+            end=payload.end,
+            must_include=payload.must_include,
+            resolutions=tuple(payload.resolutions),
+            other_filter=payload.other_filter,
         )
     except FetchError as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
     if not links:
-        raise HTTPException(status_code=422, detail="No links matched the requested episode range.")
+        raise HTTPException(status_code=422, detail="No links matched the selected filters.")
 
     semaphore = asyncio.Semaphore(5)
 
-    async def resolve(link: EpisodeLink) -> tuple[EpisodeLink, str | None, str | None]:
+    async def resolve(link: BulkLink) -> tuple[BulkLink, str | None, str | None]:
         try:
             async with semaphore:
                 magnet = (
@@ -296,6 +304,17 @@ async def add_bulk_downloads(
         raise HTTPException(status_code=502, detail=str(exc)) from exc
 
     known_hashes = {str(item.get("hash", "")).lower() for item in torrents}
+    known_names = {str(item.get("name", "")).strip().casefold() for item in torrents if item.get("name")}
+    include = payload.must_include.strip().casefold()
+    known_episodes: set[tuple[str, int, int]] = set()
+    if payload.start is not None:
+        for torrent in torrents:
+            name = str(torrent.get("name", ""))
+            if include and include not in name.casefold():
+                continue
+            identity = episode_identity(name, include)
+            if identity is not None:
+                known_episodes.add(identity)
     reserved = reserved_space(torrents, destination.volume_id, choices)
     batch_reserved = 0
     added: list[dict] = []
@@ -303,13 +322,20 @@ async def add_bulk_downloads(
     failed: list[dict] = []
 
     for link, magnet, error in resolved:
-        item = {"title": link.title, "episode": f"S{link.season:02d}E{link.episode:02d}"}
+        item = {"title": link.title}
         if error or magnet is None:
             failed.append({**item, "error": error or "The magnet link could not be resolved."})
             continue
         info_hash = magnet_info_hash(magnet)
         if info_hash in known_hashes:
             skipped.append({**item, "reason": "Already in qBittorrent."})
+            continue
+        display_name = parse_qs(urlparse(magnet).query).get("dn", [""])[0].strip().casefold()
+        if display_name and display_name in known_names:
+            skipped.append({**item, "reason": "A torrent with this name is already present."})
+            continue
+        if link.episode_key is not None and link.episode_key in known_episodes:
+            skipped.append({**item, "reason": "This episode is already present."})
             continue
         size = magnet_size(magnet)
         try:
@@ -319,6 +345,10 @@ async def add_bulk_downloads(
             failed.append({**item, "error": str(exc)})
             continue
         known_hashes.add(info_hash)
+        if display_name:
+            known_names.add(display_name)
+        if link.episode_key is not None:
+            known_episodes.add(link.episode_key)
         batch_reserved += size
         added.append({**item, "hash": info_hash})
 

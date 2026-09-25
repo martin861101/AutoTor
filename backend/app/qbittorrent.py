@@ -82,3 +82,8 @@ class QBittorrentClient:
     async def version(self) -> str:
         response = await self._request("GET", "/api/v2/app/version")
         return response.text.strip()
+
+    async def set_location(self, info_hash: str, location: str) -> None:
+        await self._request(
+            "POST", "/api/v2/torrents/setLocation", data={"hashes": info_hash, "location": location}
+        )

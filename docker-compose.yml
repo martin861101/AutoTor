@@ -41,6 +41,22 @@ services:
     security_opt:
       - no-new-privileges:true
 
+  autotor-organizer:
+    build: ./backend
+    container_name: autotor-organizer
+    command: ["python", "-m", "app.organizer"]
+    restart: unless-stopped
+    depends_on:
+      - qbittorrent
+    environment:
+      AUTOTOR_QB_URL: http://qbittorrent:9090
+      AUTOTOR_QB_USERNAME: ${QBITTORRENT_USERNAME:-admin}
+      AUTOTOR_QB_PASSWORD: ${QBITTORRENT_PASSWORD:-}
+    volumes:
+      - /mnt/series:/storage/series
+    security_opt:
+      - no-new-privileges:true
+
   autotor-web:
     build: ./frontend
     container_name: autotor-web
